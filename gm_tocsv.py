@@ -100,13 +100,13 @@ def export_csv(export_list, dt_str):
             writer.writerow(row_dt)
 
 def arrangement_label(service):
-    """threadへセットするラベルを設定"""
+    """threadへセットするlabelを設定"""
     label_body = {
         'name': LABEL_NAME,
         'labelListVisibility': 'labelShow',
         'messageListVisibility': 'show',
         }
-    # 付与するラベルが未作成の場合は新規作成
+    # セットするlabelが未作成の場合は新規作成
     userlabels = service.users().labels().list(userId='me').execute()
     label_list = [i['name'] for i in userlabels['labels']]
     if LABEL_NAME not in label_list:
@@ -118,6 +118,7 @@ def arrangement_label(service):
     return label_id
 
 def set_label(service, label_id, thread_ids, dt_str):
+    """csvファイルが出力された場合に、Gmail Threadへlabelを追加"""
     if os.path.exists(f'gmail_{dt_str}.csv'):
         thread_label_body = {'addLabelIds':[label_id]}
         for thread_id in thread_ids:
