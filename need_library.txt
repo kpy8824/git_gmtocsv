@@ -1,0 +1,7 @@
+pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
+
+【installが必要なlibrary】
+google-api-python-client
+google-auth-httplib2
+google-auth-oauthlib
+
